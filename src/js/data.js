@@ -26,7 +26,8 @@ dataSource.products = {
           latte: {label: 'Latte', price: 1, default: true},
           cappuccino: {label: 'Cappuccino', price: 1},
           espresso: {label: 'Espresso', price: 1},
-          macchiato : {label: 'Macchiato ', price: 1},
+          macchiato: {label: 'Macchiato', price: 1},
+          czarna: {label: 'Czarnulka', price: 2},
         },
       },
     },
@@ -65,6 +66,7 @@ dataSource.products = {
           mushrooms: {label: 'Mushrooms', price: 2, default: true},
           basil: {label: 'Fresh basil', price: 2, default: true},
           salami: {label: 'Salami', price: 3},
+          boczek: {label: 'Boczek', price: 4},
         },
       },
       crust: {
@@ -72,6 +74,7 @@ dataSource.products = {
         type: 'select',
         options: {
           standard: {label: 'standard', price: 0, default: true},
+          Przypieczona: {label: 'Mocno przypieczona', price: 3},
           thin: {label: 'thin', price: 2},
           thick: {label: 'thick', price: 2},
           cheese: {label: 'cheese in edges', price: 5},
