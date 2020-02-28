@@ -60,9 +60,13 @@
 
       thisProduct.id = id;
       thisProduct.data = data;
+      console.log(thisProduct.data);
 
       thisProduct.renderinMenu();
+      thisProduct.getElements();
       thisProduct.initAccordion();
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
     }
 
     renderinMenu() {
@@ -83,29 +87,44 @@
       menuContainer.appendChild(thisProduct.element);
     }
 
+    getElements() {
+      const thisProduct = this;
+
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(
+        select.menuProduct.clickable
+      );
+      thisProduct.form = thisProduct.element.querySelector(
+        select.menuProduct.form
+      );
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(
+        select.all.formInputs
+      );
+      thisProduct.cartButton = thisProduct.element.querySelector(
+        select.menuProduct.cartButton
+      );
+      thisProduct.priceElem = thisProduct.element.querySelector(
+        select.menuProduct.priceElem
+      );
+      // console.log('accordion', thisProduct.accordionTrigger);
+      // console.log('form', thisProduct.form);
+      // console.log('formInputs', thisProduct.formInputs);
+      // console.log('cardButton', thisProduct.cartButton);
+      // console.log('priceElem', thisProduct.priceElem);
+    }
 
     initAccordion() {
       // productHeader = '.product__header';
 
       const thisProduct = this;
 
-      thisProduct.clickableElement = thisProduct.element.querySelector(
-        select.menuProduct.clickable
-      );
+      thisProduct.clickableElement = thisProduct.accordionTrigger;
 
       /* find the clickable trigger (the element that should react to clicking) */
 
       const clickableTrigger = thisProduct.clickableElement;
 
-      console.log(clickableTrigger);
-
-      // buttonTest.addEventListener('click', function(){
-      //   console.log('clicked');
-
       /* START: click event listener to trigger */
       clickableTrigger.addEventListener('click', function() {
-        console.log(clickableTrigger);
-
         /* prevent default action for event */
         event.preventDefault();
 
@@ -119,10 +138,8 @@
 
         /* START LOOP: for each active product */
         for (let activeproduct of activeProducts) {
-
           /* START: if the active product isn't the element of thisProduct */
           if (activeproduct !== thisProduct.element) {
-
             /* remove class active for the active product */
             activeproduct.classList.remove('active');
 
@@ -134,6 +151,104 @@
 
         /* END: click event listener to trigger */
       });
+    }
+
+    initOrderForm() {
+      const thisProduct = this;
+      // console.log('initOrderForm', thisProduct);
+      thisProduct.form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+
+      for (let input of thisProduct.formInputs) {
+        input.addEventListener('change', function() {
+          thisProduct.processOrder();
+        });
+      }
+
+      thisProduct.cartButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        thisProduct.processOrder();
+      });
+    }
+
+    processOrder() {
+      const thisProduct = this;
+
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      console.log('formData', formData);
+
+      /*Weź cenę początkową*/
+
+      let price = thisProduct.data.price;
+      console.log(price);
+
+      /* Weź wszystkie paramsy w pętle for in */
+
+      let params = thisProduct.data.params;
+      console.log('params', params);
+
+      for (let paramID in params) {
+        const param = params[paramID];
+        console.log('param', param);
+
+        /*Nowa pętla, tym razem dla każdej opcji paramsów */
+
+        for (let optionID in param.options) {
+          // console.log('option ID', optionID);
+          console.log('options', param.options);
+
+          let option = param.options[optionID];
+          console.log('option', option);
+
+          /*Sprawdź czy któryś box jest zaznaczony */
+
+          let selectedChoice =
+            formData.hasOwnProperty(paramID) &&
+            formData[paramID].indexOf(optionID) > -1;
+          console.log('selected', selectedChoice);
+
+          /*Sprawdź czy jest defaultową opcją; Jeśli nie jest podnieś cenę, a jeśli był, zmniejsz cenę */
+
+          if (selectedChoice == true && !option.default) {
+            price += option.price;
+          } else if (selectedChoice == false && option.default)
+            price -= option.price;
+          console.log('NOWA CENA', thisProduct.priceElem.innerHTML);
+          // .innerHTML = thisProduct.price;
+          /* pokaż nową cenę produktu */
+
+          thisProduct.priceElem.innerHTML = price;
+        }
+
+
+
+        /* Zamień cenę na nową */
+
+        // console.log(formData.hasOwnProperty(paramID));
+
+        //Sprawdź typ elementów w params
+      }
+
+      // }
+
+      //CENA * QUANTITY = TOTAL_PRICE
+
+      //IF zostanie zaznaczony radio button wtedy
+      // CENA + RADIOBUTTON * quantity = TOTAL_PRICE
+      //(CENA + RADIOBUTTON (+ extra wybór (który nie jest default)) + cena PizzaCrust) * quantity = TOTAL_PRICE
+
+      /* Pętla iterująca wszystkie elementy params */
+
+      /* Pętla `for if` wewnątrz pętli params */
+
+      // for (let newPrice in )
+
+      /* Jeśli opcja jest zanzaczona, podnieś cenę produktu
+          (podlicz wartośc kluczy z formData)  */
+
+      /* Jeśli NIE JEST zaznaczona domyśla opcja, cena ma się zmniejszyć */
     }
   }
 
