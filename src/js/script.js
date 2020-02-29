@@ -105,6 +105,10 @@
       thisProduct.priceElem = thisProduct.element.querySelector(
         select.menuProduct.priceElem
       );
+      thisProduct.imageWrapper = thisProduct.element.querySelector(
+        select.menuProduct.imageWrapper
+      );
+      console.log('imageWrapper', select.menuProduct.imageWrapper);
       // console.log('accordion', thisProduct.accordionTrigger);
       // console.log('form', thisProduct.form);
       // console.log('formInputs', thisProduct.formInputs);
@@ -177,78 +181,64 @@
       const thisProduct = this;
 
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData', formData);
 
       /*Weź cenę początkową*/
 
       let price = thisProduct.data.price;
-      console.log(price);
 
       /* Weź wszystkie paramsy w pętle for in */
 
       let params = thisProduct.data.params;
-      console.log('params', params);
 
       for (let paramID in params) {
         const param = params[paramID];
-        console.log('param', param);
 
         /*Nowa pętla, tym razem dla każdej opcji paramsów */
 
         for (let optionID in param.options) {
-          // console.log('option ID', optionID);
-          console.log('options', param.options);
-
           let option = param.options[optionID];
-          console.log('option', option);
 
           /*Sprawdź czy któryś box jest zaznaczony */
 
           let selectedChoice =
             formData.hasOwnProperty(paramID) &&
             formData[paramID].indexOf(optionID) > -1;
-          console.log('selected', selectedChoice);
 
           /*Sprawdź czy jest defaultową opcją; Jeśli nie jest podnieś cenę, a jeśli był, zmniejsz cenę */
 
           if (selectedChoice == true && !option.default) {
             price += option.price;
-          } else if (selectedChoice == false && option.default)
+          } else if (selectedChoice == false && option.default) {
             price -= option.price;
-          console.log('NOWA CENA', thisProduct.priceElem.innerHTML);
-          // .innerHTML = thisProduct.price;
-          /* pokaż nową cenę produktu */
+          }
+
+          // Znajdźmy zdjęcia.
+
+          const images = thisProduct.imageWrapper.querySelectorAll(`.${paramID}-${optionID}`);
+
+          //Dodajmy pętle for of
+
+          //jeśli opcja jest zaznaczona, dodajmy classlist, a jeśli nie jest - usuńmy.
+
+          for (let image of images) {
+            if (selectedChoice == true) {
+              image.classList.add(classNames.menuProduct.imageVisible);
+            } else image.classList.remove(classNames.menuProduct.imageVisible);
+
+          }
+
+          // console.log(`.${paramID}-${optionID}`);
+          // console.log(`${paramID}-${optionID}`);
+          // console.log(`${paramID}${optionID}`);
+
+          // console.log('data.images', thisProduct.data.images);
+          // console.log('paramID:', paramID);
+          // console.log('optionID:', optionID);
+          // console.log('images', images);
 
           thisProduct.priceElem.innerHTML = price;
         }
-
-
-
-        /* Zamień cenę na nową */
-
-        // console.log(formData.hasOwnProperty(paramID));
-
-        //Sprawdź typ elementów w params
       }
-
-      // }
-
-      //CENA * QUANTITY = TOTAL_PRICE
-
-      //IF zostanie zaznaczony radio button wtedy
-      // CENA + RADIOBUTTON * quantity = TOTAL_PRICE
-      //(CENA + RADIOBUTTON (+ extra wybór (który nie jest default)) + cena PizzaCrust) * quantity = TOTAL_PRICE
-
-      /* Pętla iterująca wszystkie elementy params */
-
-      /* Pętla `for if` wewnątrz pętli params */
-
-      // for (let newPrice in )
-
-      /* Jeśli opcja jest zanzaczona, podnieś cenę produktu
-          (podlicz wartośc kluczy z formData)  */
-
-      /* Jeśli NIE JEST zaznaczona domyśla opcja, cena ma się zmniejszyć */
     }
   }
 
