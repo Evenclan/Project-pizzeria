@@ -109,15 +109,9 @@
         select.menuProduct.imageWrapper
       );
       console.log('imageWrapper', select.menuProduct.imageWrapper);
-      // console.log('accordion', thisProduct.accordionTrigger);
-      // console.log('form', thisProduct.form);
-      // console.log('formInputs', thisProduct.formInputs);
-      // console.log('cardButton', thisProduct.cartButton);
-      // console.log('priceElem', thisProduct.priceElem);
     }
 
     initAccordion() {
-      // productHeader = '.product__header';
 
       const thisProduct = this;
 
@@ -137,8 +131,6 @@
 
         /* find all active products */
         const activeProducts = document.querySelectorAll('article.active');
-
-        // 'a.active[href^="#author-"]'
 
         /* START LOOP: for each active product */
         for (let activeproduct of activeProducts) {
@@ -226,15 +218,6 @@
             } else image.classList.remove(classNames.menuProduct.imageVisible);
 
           }
-
-          // console.log(`.${paramID}-${optionID}`);
-          // console.log(`${paramID}-${optionID}`);
-          // console.log(`${paramID}${optionID}`);
-
-          // console.log('data.images', thisProduct.data.images);
-          // console.log('paramID:', paramID);
-          // console.log('optionID:', optionID);
-          // console.log('images', images);
 
           thisProduct.priceElem.innerHTML = price;
         }
