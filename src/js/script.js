@@ -60,7 +60,6 @@
 
       thisProduct.id = id;
       thisProduct.data = data;
-      console.log(thisProduct.data);
 
       thisProduct.renderinMenu();
       thisProduct.getElements();
@@ -153,7 +152,6 @@
 
     initOrderForm() {
       const thisProduct = this;
-      // console.log('initOrderForm', thisProduct);
       thisProduct.form.addEventListener('submit', function(event) {
         event.preventDefault();
         thisProduct.processOrder();
@@ -222,15 +220,21 @@
             } else image.classList.remove(classNames.menuProduct.imageVisible);
           }
 
-          thisProduct.priceElem.innerHTML = price;
         }
       }
+
+      price *= thisProduct.amountWidget.value;
+      thisProduct.priceElem.innerHTML = price;
     }
 
     initAmountWidget() {
       const thisProduct = this;
 
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      thisProduct.amountWidgetElem.addEventListener('updated', function() {
+        thisProduct.processOrder();
+        console.log('amountWidget', thisProduct.amountWidget);
+      });
     }
   }
 
@@ -239,9 +243,9 @@
       const thisWidget = this;
 
       thisWidget.getElements(element);
+      thisWidget.setValue(thisWidget.input.value);
+      thisWidget.initActions();
 
-      console.log('AmountWidget:', thisWidget);
-      console.log('constructor argumenets:', element);
     }
 
     getElements(element) {
@@ -254,11 +258,11 @@
       );
 
       thisWidget.linkIncrease = thisWidget.element.querySelector(
-        select.widgets.linkIncrease
+        select.widgets.amount.linkIncrease
       );
 
       thisWidget.linkDecrease = thisWidget.element.querySelector(
-        select.widgets.linkDecrease
+        select.widgets.amount.linkDecrease
       );
     }
 
@@ -270,9 +274,33 @@
       /*TODO: Add validation */
 
       thisWidget.value = newValue;
+      thisWidget.announce();
+
       thisWidget.input.value = thisWidget.value;
     }
 
+    initActions() {
+      const thisWidget = this;
+
+      thisWidget.input.addEventListener('change', function() {
+        thisWidget.setValue(thisWidget.input.value);
+      });
+
+      thisWidget.linkDecrease.addEventListener('click', function() {
+        thisWidget.setValue(thisWidget.value - 1);
+      });
+
+      thisWidget.linkIncrease.addEventListener('click', function() {
+        thisWidget.setValue(thisWidget.value + 1);
+      });
+    }
+
+    announce() {
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
+    }
   }
 
   const app = {
