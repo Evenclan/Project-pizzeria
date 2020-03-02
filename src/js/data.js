@@ -46,6 +46,9 @@ dataSource.products = {
       '<img class="active toppings-greenPeppers" src="images/pizza/green-peppers.svg">',
       '<img class="active toppings-mushrooms" src="images/pizza/mushrooms.svg">',
       '<img class="active toppings-basil" src="images/pizza/basil.svg">',
+      '<img class="active toppings-bacon" src="images/pizza/bacon.svg">',
+      '<img class="active toppings-corn" src="images/pizza/corn.svg">',
+      '<img class="active toppings-pineapple" src="images/pizza/pineapple.svg">',
     ],
     params: {
       sauce: {
@@ -66,7 +69,9 @@ dataSource.products = {
           mushrooms: {label: 'Mushrooms', price: 2, default: true},
           basil: {label: 'Fresh basil', price: 2, default: true},
           salami: {label: 'Salami', price: 3},
-          boczek: {label: 'Boczek', price: 4},
+          bacon: {label: 'Bacon', price: 4},
+          corn: {label: 'Corn', price: 2},
+          pineapple: {label: 'Pineapple', price: 15},
         },
       },
       crust: {
@@ -97,6 +102,7 @@ dataSource.products = {
       '<img class="active ingredients-herbs" src="images/salad/herbs.svg" style="z-index: 5;">',
       '<img class="active ingredients-cheese" src="images/salad/cheese.svg" style="z-index: 6;">',
       '<img class="active ingredients-pepper" src="images/salad/black-pepper.svg" style="z-index: 7;">',
+      '<img class="active ingredients-bacon" src="images/salad/bacon.svg" style="z-index: 8;">',
     ],
     params: {
       ingredients: {
@@ -110,6 +116,7 @@ dataSource.products = {
           cheese: {label: 'Cheese', price: 1},
           herbs: {label: 'Fresh herbs', price: 1, default: true},
           pepper: {label: 'Black pepper', price: 1},
+          bacon: {label: 'Bacon', price: 3},
         },
       },
     },
