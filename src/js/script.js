@@ -66,6 +66,7 @@
       thisProduct.getElements();
       thisProduct.initAccordion();
       thisProduct.initOrderForm();
+      thisProduct.initAmountWidget();
       thisProduct.processOrder();
     }
 
@@ -108,11 +109,12 @@
       thisProduct.imageWrapper = thisProduct.element.querySelector(
         select.menuProduct.imageWrapper
       );
-      console.log('imageWrapper', select.menuProduct.imageWrapper);
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(
+        select.menuProduct.amountWidget
+      );
     }
 
     initAccordion() {
-
       const thisProduct = this;
 
       thisProduct.clickableElement = thisProduct.accordionTrigger;
@@ -206,7 +208,9 @@
 
           // Znajdźmy zdjęcia.
 
-          const images = thisProduct.imageWrapper.querySelectorAll(`.${paramID}-${optionID}`);
+          const images = thisProduct.imageWrapper.querySelectorAll(
+            `.${paramID}-${optionID}`
+          );
 
           //Dodajmy pętle for of
 
@@ -216,13 +220,59 @@
             if (selectedChoice == true) {
               image.classList.add(classNames.menuProduct.imageVisible);
             } else image.classList.remove(classNames.menuProduct.imageVisible);
-
           }
 
           thisProduct.priceElem.innerHTML = price;
         }
       }
     }
+
+    initAmountWidget() {
+      const thisProduct = this;
+
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+    }
+  }
+
+  class AmountWidget {
+    constructor(element) {
+      const thisWidget = this;
+
+      thisWidget.getElements(element);
+
+      console.log('AmountWidget:', thisWidget);
+      console.log('constructor argumenets:', element);
+    }
+
+    getElements(element) {
+      const thisWidget = this;
+
+      thisWidget.element = element;
+
+      thisWidget.input = thisWidget.element.querySelector(
+        select.widgets.amount.input
+      );
+
+      thisWidget.linkIncrease = thisWidget.element.querySelector(
+        select.widgets.linkIncrease
+      );
+
+      thisWidget.linkDecrease = thisWidget.element.querySelector(
+        select.widgets.linkDecrease
+      );
+    }
+
+    setValue(value) {
+      const thisWidget = this;
+
+      const newValue = parseInt(value);
+
+      /*TODO: Add validation */
+
+      thisWidget.value = newValue;
+      thisWidget.input.value = thisWidget.value;
+    }
+
   }
 
   const app = {
