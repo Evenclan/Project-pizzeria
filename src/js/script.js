@@ -181,6 +181,7 @@
 
     initOrderForm() {
       const thisProduct = this;
+
       thisProduct.form.addEventListener('submit', function(event) {
         event.preventDefault();
         thisProduct.processOrder();
@@ -195,6 +196,7 @@
       thisProduct.cartButton.addEventListener('click', function(event) {
         event.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
     }
 
@@ -202,6 +204,10 @@
       const thisProduct = this;
 
       const formData = utils.serializeFormToObject(thisProduct.form);
+
+      /*NEW*/
+      thisProduct.params = {};
+
 
       /*Weź cenę początkową*/
 
@@ -245,14 +251,28 @@
 
           for (let image of images) {
             if (selectedChoice == true) {
+              if (!thisProduct.params[paramID]){
+                thisProduct.params[paramID] = {
+                  label: param.label,
+                  options: {},
+                };
+              }
+              thisProduct.params[paramID].options[optionID] = option.label;
+
               image.classList.add(classNames.menuProduct.imageVisible);
             } else image.classList.remove(classNames.menuProduct.imageVisible);
           }
         }
+        console.log(thisProduct.params);
       }
 
-      price *= thisProduct.amountWidget.value;
-      thisProduct.priceElem.innerHTML = price;
+      thisProduct.priceSingle = price;
+      thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
+
+      thisProduct.priceElem.innerHTML = thisProduct.price;
+
+      // price *= thisProduct.amountWidget.value;
+      // thisProduct.priceElem.innerHTML = price;
     }
 
     initAmountWidget() {
@@ -262,6 +282,12 @@
       thisProduct.amountWidgetElem.addEventListener('updated', function() {
         thisProduct.processOrder();
       });
+    }
+
+    addToCart(){
+      const thisProduct = this;
+
+      app.cart.add(thisProduct);
     }
   }
 
@@ -366,6 +392,12 @@
       thisCart.dom.toggleTrigger.addEventListener('click', function() {
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
+    }
+
+    add(menuProduct){
+      // const thisCart = this;
+
+      console.log('adding product', menuProduct);
     }
   }
 
