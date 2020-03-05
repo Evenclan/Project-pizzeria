@@ -6,16 +6,16 @@
   const select = {
     templateOf: {
       menuProduct: '#template-menu-product',
-      cartProduct: '#template-cart-product'
+      cartProduct: '#template-cart-product',
     },
     containerOf: {
       menu: '#product-list',
-      cart: '#cart'
+      cart: '#cart',
     },
     all: {
       menuProducts: '#product-list > .product',
       menuProductsActive: '#product-list > .product.active',
-      formInputs: 'input, select'
+      formInputs: 'input, select',
     },
     menuProduct: {
       clickable: '.product__header',
@@ -23,13 +23,13 @@
       priceElem: '.product__total-price .price',
       imageWrapper: '.product__images',
       amountWidget: '.widget-amount',
-      cartButton: '[href="#add-to-cart"]'
+      cartButton: '[href="#add-to-cart"]',
     },
     widgets: {
       amount: {
         input: 'input.amount',
         linkDecrease: 'a[href="#less"]',
-        linkIncrease: 'a[href="#more"]'
+        linkIncrease: 'a[href="#more"]',
       }
     },
     cart: {
@@ -43,14 +43,14 @@
       form: '.cart__order',
       formSubmit: '.cart__order [type="submit"]',
       phone: '[name="phone"]',
-      address: '[name="address"]'
+      address: '[name="address"]',
     },
     cartProduct: {
       amountWidget: '.widget-amount',
       price: '.cart__product-price',
       edit: '[href="#edit"]',
-      remove: '[href="#remove"]'
-    }
+      remove: '[href="#remove"]',
+    },
   };
 
   const classNames = {
@@ -286,6 +286,9 @@
 
     addToCart() {
       const thisProduct = this;
+
+      thisProduct.name = thisProduct.data.name;
+      thisProduct.amount = thisProduct.amountWidget.value;
 
       app.cart.add(thisProduct);
     }
