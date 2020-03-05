@@ -208,7 +208,6 @@
       /*NEW*/
       thisProduct.params = {};
 
-
       /*Weź cenę początkową*/
 
       let price = thisProduct.data.price;
@@ -251,10 +250,10 @@
 
           for (let image of images) {
             if (selectedChoice == true) {
-              if (!thisProduct.params[paramID]){
+              if (!thisProduct.params[paramID]) {
                 thisProduct.params[paramID] = {
                   label: param.label,
-                  options: {},
+                  options: {}
                 };
               }
               thisProduct.params[paramID].options[optionID] = option.label;
@@ -267,7 +266,8 @@
       }
 
       thisProduct.priceSingle = price;
-      thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
+      thisProduct.price =
+        thisProduct.priceSingle * thisProduct.amountWidget.value;
 
       thisProduct.priceElem.innerHTML = thisProduct.price;
 
@@ -284,7 +284,7 @@
       });
     }
 
-    addToCart(){
+    addToCart() {
       const thisProduct = this;
 
       app.cart.add(thisProduct);
@@ -323,8 +323,6 @@
       const thisWidget = this;
 
       const newValue = parseInt(value);
-
-      /*TODO: Add validation */
 
       if (
         newValue >= settings.amountWidget.defaultMin &&
@@ -384,6 +382,9 @@
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(
         select.cart.toggleTrigger
       );
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(
+        select.cart.productList
+      );
     }
 
     initActions() {
@@ -394,10 +395,17 @@
       });
     }
 
-    add(menuProduct){
-      // const thisCart = this;
+    add(menuProduct) {
+      const thisCart = this;
+
+      const generatedHTML = templates.cartProduct(menuProduct);
+      console.log('generatedHTML', generatedHTML);
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      console.log('generatedDOM', generatedDOM);
+      thisCart.dom.productList.appendChild(generatedDOM);
 
       console.log('adding product', menuProduct);
+
     }
   }
 
