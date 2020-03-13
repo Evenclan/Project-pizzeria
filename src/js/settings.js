@@ -38,7 +38,7 @@ export const select = {
     hourPicker: {
       wrapper: '.hour-picker',
       input: 'input[type="range"]',
-      output: '.output'
+      output: '.output',
     }
   },
   cart: {
