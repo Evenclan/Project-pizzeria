@@ -100,7 +100,7 @@ const app = {
     });
   },
 
-  initBooking: function () {
+  initBooking: function() {
     const thisApp = this;
 
     const bookingSubpage = document.querySelector(select.containerOf.booking);
@@ -116,11 +116,7 @@ const app = {
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
-  },
-
-
+  }
 };
-
-
 
 app.init();

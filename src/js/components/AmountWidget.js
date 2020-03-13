@@ -9,8 +9,6 @@ class AmountWidget extends BaseWidget {
 
     thisWidget.getElements(element);
     thisWidget.initActions();
-
-    console.log('amountwidget:', thisWidget);
   }
 
   getElements() {
@@ -28,12 +26,14 @@ class AmountWidget extends BaseWidget {
   }
 
   isValid(value) {
-    return !isNaN(value)
-    && value >= settings.amountWidget.defaultMin
-    && value <= settings.amountWidget.defaultMax;
+    return (
+      !isNaN(value) &&
+      value >= settings.amountWidget.defaultMin &&
+      value <= settings.amountWidget.defaultMax
+    );
   }
 
-  renderValue(){
+  renderValue() {
     const thisWidget = this;
 
     thisWidget.dom.input.value = thisWidget.value;
