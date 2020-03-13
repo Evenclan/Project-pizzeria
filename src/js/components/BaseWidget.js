@@ -14,6 +14,12 @@ class BaseWidget {
     return thisWidget.correctValue;
   }
 
+  setValue(value) {
+    const thisWidget = this;
+
+    thisWidget.value = value;
+  }
+
   set value(value) {
     const thisWidget = this;
 
@@ -25,12 +31,6 @@ class BaseWidget {
     }
 
     thisWidget.renderValue();
-  }
-
-  setValue(value) {
-    const thisWidget = this;
-
-    thisWidget.value = value;
   }
 
   parseValue(value) {

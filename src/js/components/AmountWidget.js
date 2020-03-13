@@ -9,10 +9,16 @@ class AmountWidget extends BaseWidget {
 
     thisWidget.getElements(element);
     thisWidget.initActions();
+
+    thisWidget.dom.input.value = settings.amountWidget.defaultMin;
+
+    // select.widgets.amount.input.innerHTML = thisWidget.dom.input.value;
   }
 
   getElements() {
     const thisWidget = this;
+
+
 
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(
       select.widgets.amount.input
