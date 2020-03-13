@@ -59,7 +59,6 @@ class Cart {
     });
     thisCart.dom.form.addEventListener('submit', function() {
       event.preventDefault();
-      /* PRÓBA */
       thisCart.sendOrder();
     });
   }
