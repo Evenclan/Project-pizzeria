@@ -7,7 +7,6 @@ import { settings, select } from '../settings.js';
 class HourPicker extends BaseWidget {
   constructor(wrapper) {
     super(wrapper, settings.hours.open);
-    console.log('wrapper', wrapper);
 
     const thisWidget = this;
 

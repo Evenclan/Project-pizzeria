@@ -104,7 +104,6 @@ const app = {
     const thisApp = this;
 
     const bookingSubpage = document.querySelector(select.containerOf.booking);
-    console.log('bookingSubpage', bookingSubpage);
 
     thisApp.booking = new Booking(bookingSubpage);
   },
