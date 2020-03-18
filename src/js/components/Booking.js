@@ -47,14 +47,18 @@ class Booking {
         const bookingsResponse = allResponses[0];
         const eventsCurrentResponse = allResponses[1];
         const eventsRepeatResponse = allResponses[2];
+
         return Promise.all([
           bookingsResponse.json(),
           eventsCurrentResponse.json(),
           eventsRepeatResponse.json(),
         ]);
+
       })
+
       .then(function([bookings, eventsCurrent, eventsRepeat]) {
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
+
       });
   }
 
@@ -99,7 +103,7 @@ class Booking {
     if (typeof thisBooking.booked[date] === 'undefined') {
       thisBooking.booked[date] = {};
     }
-
+    console.log(hour);
     const startHour = utils.hourToNumber(hour);
 
     for (
@@ -119,6 +123,7 @@ class Booking {
 
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
+    // console.log(thisBooking.hourPicker.value);
 
     let allAvailable = false;
 
@@ -142,7 +147,7 @@ class Booking {
       ) {
         table.classList.add(classNames.booking.tableBooked);
       } else {
-        table.classList.remove(classNames.booking.tablebooked);
+        table.classList.remove(classNames.booking.tableBooked);
       }
     }
   }
@@ -168,7 +173,7 @@ class Booking {
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(
       select.widgets.datePicker.wrapper
     );
-    thisBooking.dom.HourPicker = thisBooking.dom.wrapper.querySelector(
+    thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(
       select.widgets.hourPicker.wrapper
     );
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(
@@ -183,7 +188,7 @@ class Booking {
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
 
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
-    thisBooking.HourPicker = new HourPicker(thisBooking.dom.HourPicker);
+    thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
     thisBooking.dom.wrapper.addEventListener('updated', function() {
       thisBooking.updateDOM();

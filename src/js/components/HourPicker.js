@@ -31,7 +31,7 @@ class HourPicker extends BaseWidget {
     // eslint-disable-next-line no-undef
     rangeSlider.create(thisWidget.dom.input);
 
-    thisWidget.dom.output.innerHTML = `${settings.hours.open}:00`;
+    thisWidget.dom.output.innerHTML = `${settings.hours.open}`;
 
     thisWidget.dom.input.addEventListener('input', function() {
       thisWidget.value = thisWidget.dom.input.value;
