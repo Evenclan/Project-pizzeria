@@ -53,9 +53,13 @@ class Booking {
     thisBooking.dom.formSubmit = thisBooking.dom.wrapper.querySelector(
       select.booking.formSubmit
     );
-    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(
+      select.booking.phone
+    );
 
-    thisBooking.dom.adress = thisBooking.dom.wrapper.querySelector(select.booking.adress);
+    thisBooking.dom.adress = thisBooking.dom.wrapper.querySelector(
+      select.booking.adress
+    );
   }
 
   getData() {
@@ -193,6 +197,13 @@ class Booking {
       .then(function(parsedResponse) {
         console.log('parsedResponse', parsedResponse);
       });
+
+    // thisBooking.makeBooked(
+    //   booking.date,
+    //   booking.hour,
+    //   booking.duration,
+    //   booking.table
+    // );
   }
 
   makeBooked(date, hour, duration, table) {
@@ -212,7 +223,7 @@ class Booking {
       if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
         thisBooking.booked[date][hourBlock] = [];
       }
-      thisBooking.booked[date][hourBlock].push(table);
+      this.booked[date][hourBlock] = this.booked[date][hourBlock].concat(table).filter((number, index, array) => array.indexOf(number) === index);
     }
   }
 
