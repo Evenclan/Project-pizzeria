@@ -13,7 +13,6 @@ class CartProduct {
     thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
 
     thisCartProduct.getElements(element);
-
     thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
   }

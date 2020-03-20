@@ -157,6 +157,21 @@
 
     }
 
+    &.selected {
+      color: $color-main;
+
+      &::after {
+        position: absolute;
+        background: $color-success;
+        content: '';
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        opacity: 0.2;
+      }
+    }
+
     &.booked {
       cursor: not-allowed;
       color: lighten($color-dark, 40%);
