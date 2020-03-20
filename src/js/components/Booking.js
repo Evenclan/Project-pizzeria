@@ -53,6 +53,9 @@ class Booking {
     thisBooking.dom.formSubmit = thisBooking.dom.wrapper.querySelector(
       select.booking.formSubmit
     );
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+
+    thisBooking.dom.adress = thisBooking.dom.wrapper.querySelector(select.booking.adress);
   }
 
   getData() {
@@ -151,7 +154,9 @@ class Booking {
       table: [],
       starters: [],
       duration: parseInt(thisBooking.dom.duration.value),
-      people: parseInt(thisBooking.dom.people.value)
+      people: parseInt(thisBooking.dom.people.value),
+      phone: thisBooking.dom.phone.value,
+      adress: thisBooking.dom.adress.value
     };
 
     for (let starter of thisBooking.dom.starters) {
@@ -263,13 +268,13 @@ class Booking {
     thisBooking.hour = thisBooking.hourPicker.dom.input;
     thisBooking.date = thisBooking.datePicker.dom.input;
 
-    thisBooking.hour.addEventListener('change', function (){
+    thisBooking.hour.addEventListener('change', function() {
       for (let table of thisBooking.dom.tables) {
         table.classList.remove('selected');
       }
     });
 
-    thisBooking.date.addEventListener('change', function (){
+    thisBooking.date.addEventListener('change', function() {
       for (let table of thisBooking.dom.tables) {
         table.classList.remove('selected');
       }
@@ -282,8 +287,6 @@ class Booking {
       }
     });
   }
-
-
 
   initWidgets() {
     const thisBooking = this;
