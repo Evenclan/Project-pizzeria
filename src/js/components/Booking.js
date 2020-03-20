@@ -108,7 +108,7 @@ class Booking {
       })
 
       .then(function([bookings, eventsCurrent, eventsRepeat]) {
-        console.log('bookings from API', bookings);
+        // console.log('bookings from API', bookings);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
   }
@@ -174,7 +174,6 @@ class Booking {
         thisBooking.tableId = table.getAttribute(
           settings.booking.tableIdAttribute
         );
-        console.log(thisBooking.tableId);
         if (!isNaN(thisBooking.tableId)) {
           thisBooking.tableId = parseInt(thisBooking.tableId);
         }
@@ -197,13 +196,6 @@ class Booking {
       .then(function(parsedResponse) {
         console.log('parsedResponse', parsedResponse);
       });
-
-    // thisBooking.makeBooked(
-    //   booking.date,
-    //   booking.hour,
-    //   booking.duration,
-    //   booking.table
-    // );
   }
 
   makeBooked(date, hour, duration, table) {
@@ -223,7 +215,7 @@ class Booking {
       if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
         thisBooking.booked[date][hourBlock] = [];
       }
-      this.booked[date][hourBlock] = this.booked[date][hourBlock].concat(table).filter((number, index, array) => array.indexOf(number) === index);
+      thisBooking.booked[date][hourBlock] = this.booked[date][hourBlock].concat(table).filter((number, index, array) => array.indexOf(number) === index);
     }
   }
 
