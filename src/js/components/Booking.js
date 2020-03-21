@@ -108,7 +108,7 @@ class Booking {
       })
 
       .then(function([bookings, eventsCurrent, eventsRepeat]) {
-        // console.log('bookings from API', bookings);
+        console.log('bookings from API', bookings);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
   }

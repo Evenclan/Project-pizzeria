@@ -10,6 +10,7 @@
   font-size: $base-size;
   box-shadow: 0 0 $base-size rgba(0, 0, 0, 0.2);
   z-index: 9999;
+  /* TUTAJ */
 
   &.active {
     .cart__content {
