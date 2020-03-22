@@ -73,10 +73,13 @@ export const select = {
     adress:'.order-confirmation [type="text"]',
     form: '.order-confirmation',
     formSubmit: '.order-confirmation [type="submit"]',
-
   },
   nav: {
     links: '.main-nav a',
+  },
+  carousel: {
+    slider: '.slider',
+    circle: '.circle',
   }
 };
 
@@ -97,6 +100,12 @@ export const classNames = {
   },
   pages: {
     active: 'active',
+  },
+  slider: {
+    active: 'active',
+  },
+  circle: {
+    active: 'active-circle',
   }
 };
 

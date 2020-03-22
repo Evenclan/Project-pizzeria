@@ -6,7 +6,6 @@
   &__wrapper {
     position: relative;
   }
-
 }
 
 .logo {
@@ -22,7 +21,6 @@
     }
   }
 
-
   &__title {
     margin: 0 0 $base-size 0;
     font-size: ($base-size * 4);
@@ -33,7 +31,6 @@
     span {
       font-weight: $font-bold;
     }
-
   }
 
   &__subtitle {
@@ -42,7 +39,6 @@
     font-weight: $font-light;
     font-style: italic;
   }
-
 }
 
 .main-nav {
@@ -64,7 +60,5 @@
     &.active {
       background: lighten($color-dark, 75%);
     }
-
   }
-
 }

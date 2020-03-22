@@ -2,6 +2,7 @@ import { settings, select, classNames } from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import Carousel from './components/Carousel.js';
 
 const app = {
   initPages: function() {
@@ -108,6 +109,10 @@ const app = {
     thisApp.booking = new Booking(bookingSubpage);
   },
 
+  initCarousel: function() {
+    new Carousel();
+  },
+
   init: function() {
     const thisApp = this;
 
@@ -115,6 +120,7 @@ const app = {
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.initCarousel();
   }
 };
 

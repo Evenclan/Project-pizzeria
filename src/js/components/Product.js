@@ -147,9 +147,6 @@ class Product {
       thisProduct.priceSingle * thisProduct.amountWidget.value;
 
     thisProduct.priceElem.innerHTML = thisProduct.price;
-
-    // price *= thisProduct.amountWidget.value;
-    // thisProduct.priceElem.innerHTML = price;
   }
 
   initAmountWidget() {
