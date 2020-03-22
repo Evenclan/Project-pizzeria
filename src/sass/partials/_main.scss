@@ -110,13 +110,14 @@ img {
   margin-left: 23px;
 }
 
-.quote-circle div{
+.quote-circle div {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: #bdbdbd;
   margin-left: 15px;
   cursor: pointer;
+
   &.active-circle {
     background-color: #575757;
   }
@@ -166,13 +167,11 @@ img {
 
 .picture-icon .fas:hover {
   color: $color-main;
-  }
+}
 
 .instagram a {
   color: $color-main;
 }
-
-
 
 //MEDIA
 @media (max-width: 688px) {
