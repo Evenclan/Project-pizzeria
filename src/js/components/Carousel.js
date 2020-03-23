@@ -22,17 +22,16 @@ class Carousel {
     }
 
     slideNumber++;
-    // console.log(slideNumber);
 
     if (slideNumber > sliders.length) {
-      slideNumber = 1;
+      slideNumber = 0;
 
     }
     for (let i = 0; i < circles.length; i++) {
       circles[i].classList.remove('active');
     }
-    sliders[slideNumber - 1].classList.add('active');
-    circles[slideNumber - 1].classList.add('active');
+    sliders[slideNumber].classList.add('active');
+    circles[slideNumber].classList.add('active');
   }
 
 
