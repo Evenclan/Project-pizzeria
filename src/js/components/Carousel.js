@@ -13,8 +13,8 @@ class Carousel {
     const sliders = document.querySelectorAll(select.carousel.slider);
     const circles = document.querySelectorAll(select.carousel.circle);
 
-    console.log(sliders);
-    console.log(circles);
+    // console.log(sliders);
+    // console.log(circles);
 
     for (let i = 0; i < sliders.length; i++) {
       sliders[i].classList.remove('active');
@@ -22,7 +22,7 @@ class Carousel {
     }
 
     slideNumber++;
-    console.log(slideNumber);
+    // console.log(slideNumber);
 
     if (slideNumber > sliders.length) {
       slideNumber = 1;
