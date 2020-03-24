@@ -90,6 +90,7 @@ img {
 .carousel-slider {
   margin-left: 38px;
   margin-top: 20px;
+  transition: all 2s;
 }
 
 .slider {
@@ -98,6 +99,25 @@ img {
 
 .carousel-slider .active {
   display: block;
+  animation: fadeIn ease 3s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .quote-author {
